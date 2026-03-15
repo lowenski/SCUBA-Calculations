@@ -34,3 +34,7 @@ A comprehensive web-based calculator designed specifically for cave diving plann
 ## Usage
 
 Simply open the `index.html` file in any modern web browser to start using the calculator. No installation or server is required.
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0) - see the [LICENSE](LICENSE) file for details.
