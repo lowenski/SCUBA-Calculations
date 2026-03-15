@@ -1,6 +1,15 @@
 # Cave Diving Calculator
 
+> ⚠️ **DISCLAIMER:** Not all calculations provided by this application may be 100% accurate. **NEVER break your training limits.** This application is simply an effort to have better visual tools for dive planning, and for the community to code and improve it together. Always verify your dive plan manually and consult your training agencies' guidelines.
+
 A comprehensive web-based calculator designed specifically for cave diving planning and safety. It provides a suite of tools to calculate gas planning, SAC rates, Nitrox mixes, PO2, weight requirements, and more.
+
+## Previews
+
+*(Please place your screenshot images in the `assets/` directory named `tank_calculator.png` and `po2_table.png`)*
+
+![Tank Calculator](assets/tank_calculator.png)
+![PO2 Table](assets/po2_table.png)
 
 ## Features
 

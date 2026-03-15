@@ -385,6 +385,22 @@ body::before {
     min-height: 100vh;
 }
 
+/* Global Disclaimer Banner */
+.global-disclaimer {
+    background: var(--warning-bg);
+    border-left: 4px solid var(--caution);
+    color: var(--text-primary);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.global-disclaimer strong {
+    color: var(--caution);
+}
+
 /* Calculator Sections */
 .calculator-section {
     display: none;
