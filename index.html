@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cave Diving Calculator</title>
+    <meta name="description"
+        content="Comprehensive cave diving calculator for gas planning, SAC rate, Nitrox, PO2, weight calculations and more">
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">🤿</span>
+                <span class="logo-text">CaveDive<span class="accent">Calc</span></span>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#units" class="nav-link active" data-section="units">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 10h14" />
+                            <path d="M7 14h14" />
+                            <path d="M3 10h.01" />
+                            <path d="M3 14h.01" />
+                        </svg></span>
+                    <span class="nav-text">Unit Converter</span>
+                </a></li>
+            <li><a href="#tanks" class="nav-link" data-section="tanks">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 10c0-4.4 3.6-8 8-8s8 3.6 8 8v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10z" />
+                            <circle cx="12" cy="10" r="2" />
+                        </svg></span>
+                    <span class="nav-text">Tank Calculator</span>
+                </a></li>
+            <li><a href="#weights" class="nav-link" data-section="weights">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3v18" />
+                            <rect x="6" y="8" width="12" height="8" rx="2" />
+                        </svg></span>
+                    <span class="nav-text">Weight Calculator</span>
+                </a></li>
+            <li><a href="#gasplan" class="nav-link" data-section="gasplan">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
+                        </svg></span>
+                    <span class="nav-text">Gas Planning</span>
+                </a></li>
+            <li><a href="#penetration" class="nav-link" data-section="penetration">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+                        </svg></span>
+                    <span class="nav-text">Penetration</span>
+                </a></li>
+            <li><a href="#sac" class="nav-link" data-section="sac">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 12h20" />
+                            <path
+                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                        </svg></span>
+                    <span class="nav-text">SAC Rate</span>
+                </a></li>
+            <li><a href="#nitrox" class="nav-link" data-section="nitrox">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a7 7 0 0 1 7 7v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9a7 7 0 0 1 7-7z" />
+                            <path d="M9 12h6" />
+                            <path d="M12 9v6" />
+                        </svg></span>
+                    <span class="nav-text">Nitrox Calculator</span>
+                </a></li>
+            <li><a href="#po2" class="nav-link" data-section="po2">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                            <line x1="12" y1="9" x2="12" y2="13" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg></span>
+                    <span class="nav-text">PO2 Table</span>
+                </a></li>
+            <li><a href="#tips" class="nav-link" data-section="tips">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18h6" />
+                            <path d="M10 22h4" />
+                            <path d="M12 2A7 7 0 0 0 5 9c0 5 2.5 7.5 3 9h8c.5-1.5 3-4 3-9a7 7 0 0 0-7-7z" />
+                        </svg></span>
+                    <span class="nav-text">Quick Tips</span>
+                </a></li>
+            <li><a href="#checklist" class="nav-link" data-section="checklist">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 11l3 3L22 4" />
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                        </svg></span>
+                    <span class="nav-text">Checklist</span>
+                </a></li>
+        </ul>
+        <div class="unit-toggle-container">
+            <span class="unit-label">Units:</span>
+            <div class="unit-toggle">
+                <button class="unit-btn active" data-unit="imperial">Imperial</button>
+                <button class="unit-btn" data-unit="metric">Metric</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Unit Converter Section -->
+        <section id="units" class="calculator-section active">
+            <div class="section-header">
+                <h1>🔄 Unit Converter</h1>
+                <p class="section-desc">Convert between Imperial and Metric units</p>
+            </div>
+            <div class="calc-grid">
+                <!-- Pressure -->
+                <div class="calc-card">
+                    <h3>Pressure</h3>
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <input type="number" id="psiInput" placeholder="0" step="any">
+                            <span class="input-unit">PSI</span>
+                        </div>
+                        <span class="converter-arrow">⇄</span>
+                        <div class="input-wrapper">
+                            <input type="number" id="barInput" placeholder="0" step="any">
+                            <span class="input-unit">Bar</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Depth -->
+                <div class="calc-card">
+                    <h3>Depth</h3>
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <input type="number" id="feetInput" placeholder="0" step="any">
+                            <span class="input-unit">Feet</span>
+                        </div>
+                        <span class="converter-arrow">⇄</span>
+                        <div class="input-wrapper">
+                            <input type="number" id="metersInput" placeholder="0" step="any">
+                            <span class="input-unit">Meters</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Volume -->
+                <div class="calc-card">
+                    <h3>Volume</h3>
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <input type="number" id="cuftInput" placeholder="0" step="any">
+                            <span class="input-unit">ft³</span>
+                        </div>
+                        <span class="converter-arrow">⇄</span>
+                        <div class="input-wrapper">
+                            <input type="number" id="litersInput" placeholder="0" step="any">
+                            <span class="input-unit">Liters</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Temperature -->
+                <div class="calc-card">
+                    <h3>Temperature</h3>
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <input type="number" id="fahrenheitInput" placeholder="0" step="any">
+                            <span class="input-unit">°F</span>
+                        </div>
+                        <span class="converter-arrow">⇄</span>
+                        <div class="input-wrapper">
+                            <input type="number" id="celsiusInput" placeholder="0" step="any">
+                            <span class="input-unit">°C</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tank Calculator Section -->
+        <section id="tanks" class="calculator-section">
+            <div class="section-header">
+                <h1><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="v-bottom">
+                        <path d="M4 10c0-4.4 3.6-8 8-8s8 3.6 8 8v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10z" />
+                        <circle cx="12" cy="10" r="2" />
+                    </svg> Tank Calculator</h1>
+                <p class="section-desc">Calculate actual gas volume and buoyancy characteristics</p>
+            </div>
+            <div class="tank-calc-grid">
+                <!-- Column 1: Visual & Selection -->
+                <div class="calc-card visual-col">
+                    <h3>Configuration</h3>
+                    <div class="control-group">
+                        <label>Select Cylinder</label>
+                        <select id="tankType" title="Select tank type">
+                            <optgroup label="Last Frontier Cave Standard">
+                                <option value="hp100">Steel HP100 (Faber)</option>
+                                <option value="doubles_lp85">Steel LP85 (Faber Doubles)</option>
+                                <option value="al80">AL80 (Stage/Deco)</option>
+                            </optgroup>
+                            <optgroup label="Sidemount Specific">
+                                <option value="sm_lp85">LP85 Sidemount</option>
+                                <option value="sm_hp100">HP100 Sidemount</option>
+                                <option value="sm50">Steel 50 (Faber)</option>
+                            </optgroup>
+                            <optgroup label="Other Steel">
+                                <option value="hp80">HP80</option>
+                                <option value="hp120">HP120</option>
+                                <option value="lp108">LP108</option>
+                            </optgroup>
+                            <optgroup label="Other Aluminum">
+                                <option value="al80_luxfer">AL80 Luxfer</option>
+                                <option value="al40">AL40</option>
+                                <option value="al63">AL63</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div id="tankVisualContainer" class="tank-visual-large">
+                        <!-- Technical SVG populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Column 2: Specs -->
+                <div class="calc-card specs-col">
+                    <h3>Physical Specs</h3>
+                    <div id="tankSpecsList" class="specs-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Column 3: Analysis -->
+                <div class="calc-card analysis-col">
+                    <h3>Gas & Buoyancy</h3>
+
+                    <div class="input-stack">
+                        <div class="input-wrapper">
+                            <label>Current Pressure</label>
+                            <div class="pressure-input-row">
+                                <input type="number" id="tankPressure" placeholder="3000" value="3000">
+                                <span class="input-unit" id="tankPressureUnit">PSI</span>
+                            </div>
+                            <input type="range" id="tankPressureSlider" min="0" max="4000" value="3000"
+                                class="pressure-slider" title="Adjust tank pressure">
+                        </div>
+
+                        <div class="analysis-result">
+                            <span class="label">Real Gas Volume</span>
+                            <span class="value" id="availableGas">--</span>
+                        </div>
+
+                        <div class="analysis-result">
+                            <span class="label">Buoyancy Shift</span>
+                            <div id="buoyancyDisplay" class="buoyancy-dynamic">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weight Calculator Section -->
+        <section id="weights" class="calculator-section">
+            <div class="section-header">
+                <h1>⚖️ Weight Calculator</h1>
+                <p class="section-desc">Calculate ballast weight needed for neutral buoyancy</p>
+            </div>
+            <div class="calc-grid">
+                <div class="calc-card wide">
+                    <h3>Diver Profile</h3>
+                    <div class="form-grid">
+                        <div class="input-wrapper">
+                            <label>Body Weight</label>
+                            <input type="number" id="bodyWeight" placeholder="180" value="180">
+                            <span class="input-unit" id="bodyWeightUnit">lbs</span>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Wetsuit Type</label>
+                            <select id="wetsuitType" title="Select wetsuit type">
+                                <option value="none">No Exposure Suit</option>
+                                <option value="3mm">3mm Wetsuit</option>
+                                <option value="5mm" selected>5mm Wetsuit</option>
+                                <option value="7mm">7mm Wetsuit</option>
+                                <option value="drysuit">Drysuit</option>
+                            </select>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>BCD / Harness</label>
+                            <select id="bcdType" title="Select BCD type">
+                                <optgroup label="Backmount (Backplate + Wing)">
+                                    <option value="bp-steel" selected>Steel Backplate + Wing</option>
+                                    <option value="bp-aluminum">Aluminum Backplate + Wing</option>
+                                </optgroup>
+                                <optgroup label="Sidemount">
+                                    <option value="sm-xdeep">Xdeep Stealth Tec 2.0</option>
+                                    <option value="sm-diverite">Dive Rite Ray</option>
+                                    <option value="sm-katana">Hollis Katana 2</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Tank Configuration</label>
+                            <select id="tankConfig" title="Select tank configuration">
+                                <optgroup label="Backmount Single">
+                                    <option value="single-al">Single AL80</option>
+                                    <option value="single-steel">Single Steel HP100</option>
+                                </optgroup>
+                                <optgroup label="Backmount Doubles">
+                                    <option value="doubles-lp">Doubles LP85</option>
+                                    <option value="doubles-hp">Doubles HP100</option>
+                                </optgroup>
+                                <optgroup label="Sidemount">
+                                    <option value="sidemount-al80">Sidemount AL80 (×2)</option>
+                                    <option value="sidemount-al40">Sidemount AL40 (×2)</option>
+                                    <option value="sidemount-lp85">Sidemount LP85 (×2)</option>
+                                    <option value="sidemount-steel50">Sidemount Steel 50 (×2)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Water Type</label>
+                            <select id="waterType" title="Select water type">
+                                <option value="fresh">Fresh Water</option>
+                                <option value="salt">Salt Water</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="calc-card result-card">
+                    <h3>Buoyancy Check</h3>
+                    <div class="weight-check-grid">
+                        <div class="weight-item recommended">
+                            <span class="label">Recommended</span>
+                            <div class="weight-value-group">
+                                <span class="result-value" id="recommendedWeight">12</span>
+                                <span class="result-unit" id="weightUnit">lbs</span>
+                            </div>
+                        </div>
+                        <div class="weight-item current">
+                            <label for="currentLead">Lead Added</label>
+                            <div class="input-group-row">
+                                <input type="number" id="currentLead" value="0" min="0" max="50">
+                                <button id="applyRecWeight" title="Apply Recommended">↙ Use</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="weightVisualContainer" class="visual-container">
+                        <!-- Diver Trim Visual populated by JS -->
+                    </div>
+                    <div class="weight-breakdown" id="weightBreakdown">
+                        <!-- Breakdown populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gas Planning Section -->
+        <section id="gasplan" class="calculator-section">
+            <div class="section-header">
+                <h1><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="v-bottom">
+                        <path d="M12 2a7 7 0 0 1 7 7v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9a7 7 0 0 1 7-7z" />
+                        <path d="M9 12h6" />
+                        <path d="M12 9v6" />
+                    </svg> Gas Planning</h1>
+                <p class="section-desc">Rule of Thirds and reserve calculations</p>
+            </div>
+            <div class="calc-grid">
+                <div class="calc-card">
+                    <h3>Starting Gas</h3>
+                    <div class="input-stack">
+                        <div class="input-wrapper">
+                            <label>Tank Configuration</label>
+                            <select id="gasPlanTankConfig" title="Select tank configuration">
+                                <optgroup label="Backmount Single">
+                                    <option value="al80">Single AL80 (77 ft³)</option>
+                                    <option value="hp100">Single HP100 (100 ft³)</option>
+                                </optgroup>
+                                <optgroup label="Backmount Doubles">
+                                    <option value="doubles-lp85">Doubles LP85 (170 ft³)</option>
+                                    <option value="doubles-hp100">Doubles HP100 (200 ft³)</option>
+                                </optgroup>
+                                <optgroup label="Sidemount">
+                                    <option value="sm-al80">Sidemount AL80 ×2 (155 ft³)</option>
+                                    <option value="sm-al40">Sidemount AL40 ×2 (80 ft³)</option>
+                                    <option value="sm-lp85">Sidemount LP85 ×2 (170 ft³)</option>
+                                    <option value="sm-steel50">Sidemount Steel 50 ×2 (100 ft³)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Starting Pressure</label>
+                            <input type="number" id="startPressure" placeholder="3000" value="3000">
+                            <span class="input-unit" id="startPressureUnit">PSI</span>
+                        </div>
+                    </div>
+                    <div class="total-gas-display" id="totalGasDisplay">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                <div class="calc-card result-card">
+                    <h3>Visual Gas Plan</h3>
+                    <div id="gasVisualContainer" class="tank-visual-container">
+                        <!-- Visuals populated by JS -->
+                    </div>
+
+                    <h3>Rule of Thirds Data</h3>
+                    <div class="thirds-display">
+                        <div class="third-item in">
+                            <span class="third-label">Penetration</span>
+                            <span class="third-value" id="thirdIn">1000</span>
+                            <span class="third-unit">PSI</span>
+                        </div>
+                        <div class="third-item out">
+                            <span class="third-label">Exit</span>
+                            <span class="third-value" id="thirdOut">1000</span>
+                            <span class="third-unit">PSI</span>
+                        </div>
+                        <div class="third-item reserve">
+                            <span class="third-label">Reserve</span>
+                            <span class="third-value" id="thirdReserve">1000</span>
+                            <span class="third-unit">PSI</span>
+                        </div>
+                    </div>
+                    <div class="turnaround-display">
+                        <span class="turnaround-label">Turn at:</span>
+                        <span class="turnaround-value" id="turnaroundPressure">2000</span>
+                        <span class="turnaround-unit">PSI</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Penetration Calculator Section -->
+        <section id="penetration" class="calculator-section">
+            <div class="section-header">
+                <h1>🏊 Penetration Calculator</h1>
+                <p class="section-desc">Calculate max penetration based on gas and SAC rates</p>
+            </div>
+            <div class="calc-grid">
+                <div class="calc-card wide">
+                    <h3>Team Gas Planning</h3>
+                    <div class="penetration-form-grid">
+                        <div class="input-wrapper">
+                            <label>Certification Level</label>
+                            <select id="penCertLevel" title="Select your certification level">
+                                <option value="cavern">Cavern Diver (200ft Limit)</option>
+                                <option value="apprentice" selected>Apprentice/Intro (1,000ft Limit)</option>
+                                <option value="full">Full Cave Diver (Gas Limited)</option>
+                            </select>
+                        </div>
+
+                        <!-- Side-by-Side Diver Group -->
+                        <div class="diver-inputs-row">
+                            <!-- Diver 1 Group -->
+                            <div class="input-group-col">
+                                <h4 class="group-title">DIVER 1 (YOU)</h4>
+                                <div class="input-wrapper">
+                                    <label>SAC Rate (ft³/min)</label>
+                                    <input type="number" id="yourSac" placeholder="0.5" value="0.5" step="0.1">
+                                </div>
+                                <div class="input-wrapper">
+                                    <label>Tank Type</label>
+                                    <select id="yourTankType" title="Your tank type">
+                                        <option value="al80" selected>AL80 (Standard)</option>
+                                        <option value="hp100">HP100 (Steel)</option>
+                                        <option value="lp85">LP85 (Steel)</option>
+                                        <option value="doubles-lp85">Doubles LP85</option>
+                                        <option value="doubles-hp100">Doubles HP100</option>
+                                        <option value="sm-al80">Sidemount AL80 x2</option>
+                                        <option value="sm-al40">Sidemount AL40 x2</option>
+                                        <option value="sm-lp85">Sidemount LP85 x2</option>
+                                        <option value="sm-steel50">Sidemount Steel 50 x2</option>
+                                    </select>
+                                </div>
+                                <div class="input-wrapper">
+                                    <label>Tank 1 Pressure (PSI)</label>
+                                    <input type="number" id="yourTank1" placeholder="3000" value="3000">
+                                </div>
+                                <div class="input-wrapper">
+                                    <label>Tank 2 Pressure (PSI)</label>
+                                    <input type="number" id="yourTank2" placeholder="0" value="0">
+                                </div>
+                            </div>
+
+                            <!-- Diver 2 Group -->
+                            <div class="input-group-col">
+                                <h4 class="group-title">DIVER 2 (PARTNER)</h4>
+                                <div class="input-wrapper">
+                                    <label>SAC Rate (ft³/min)</label>
+                                    <input type="number" id="partnerSac" placeholder="0.6" value="0.6" step="0.1">
+                                </div>
+                                <div class="input-wrapper">
+                                    <label>Tank Type</label>
+                                    <select id="partnerTankType" title="Partner tank type">
+                                        <option value="al80" selected>AL80 (Standard)</option>
+                                        <option value="hp100">HP100 (Steel)</option>
+                                        <option value="lp85">LP85 (Steel)</option>
+                                        <option value="doubles-lp85">Doubles LP85</option>
+                                        <option value="doubles-hp100">Doubles HP100</option>
+                                        <option value="sm-al80">Sidemount AL80 x2</option>
+                                        <option value="sm-al40">Sidemount AL40 x2</option>
+                                        <option value="sm-lp85">Sidemount LP85 x2</option>
+                                        <option value="sm-steel50">Sidemount Steel 50 x2</option>
+                                    </select>
+                                </div>
+                                <div class="input-wrapper">
+                                    <label>Tank 1 Pressure (PSI)</label>
+                                    <input type="number" id="partnerTank1" placeholder="3000" value="3000">
+                                </div>
+                                <div class="input-wrapper">
+                                    <label>Tank 2 Pressure (PSI)</label>
+                                    <input type="number" id="partnerTank2" placeholder="0" value="0">
+                                </div>
+                            </div>
+                        </div> <!-- div.diver-inputs-row -->
+
+                        <div class="input-wrapper penetration-shared-params">
+                            <label>Shared Mission Parameters</label>
+                            <div class="form-grid penetration-grid-2col">
+                                <div class="input-wrapper">
+                                    <label>Planned Depth (ft)</label>
+                                    <input type="number" id="penDepth" placeholder="60" value="60"
+                                        title="Planned depth in feet">
+                                </div>
+                                <div class="input-wrapper">
+                                    <label>Swim Speed</label>
+                                    <select id="swimSpeed" title="Select swim speed">
+                                        <option value="30">Slow (30 ft/min)</option>
+                                        <option value="50" selected>Normal (50 ft/min)</option>
+                                        <option value="70">Fast (70 ft/min)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label>Test Penetration: <span id="testDistValue">0</span> <span
+                                    class="testDistUnit">ft</span></label>
+                            <input type="range" id="testDistSlider" min="0" max="3000" value="0" step="10"
+                                title="Test penetration distance">
+                        </div>
+                    </div>
+                </div>
+                <div class="calc-card result-card">
+                    <h3>Maximum Penetration</h3>
+                    <div class="penetration-result">
+                        <span class="result-value large" id="maxPenetration">850</span>
+                        <span class="result-unit" id="maxPenUnit">ft</span>
+                    </div>
+                    <div id="penVisualContainer" class="visual-container">
+                        <!-- Cave Tunnel Visual populated by JS -->
+                    </div>
+                    <div class="pen-details" id="penDetails">
+                        <!-- Details populated by JS -->
+                    </div>
+                </div>
+                <div class="calc-card warning-card">
+                    <h3>⚠️ Emergency Scenario</h3>
+                    <div class="emergency-info" id="emergencyInfo">
+                        <p class="emergency-desc">If partner loses gas at max penetration:</p>
+                        <!-- Emergency info populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SAC Rate Calculator Section -->
+        <section id="sac" class="calculator-section">
+            <div class="section-header">
+                <h1>📊 SAC Rate Calculator</h1>
+                <p class="section-desc">Calculate your Surface Air Consumption</p>
+            </div>
+            <div class="calc-grid">
+                <div class="calc-card wide">
+                    <h3>Dive Data</h3>
+                    <div class="form-grid">
+                        <div class="input-wrapper">
+                            <label>Starting Pressure</label>
+                            <input type="number" id="sacStart" placeholder="3000" value="3000">
+                            <span class="input-unit" id="sacStartUnit">PSI</span>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Ending Pressure</label>
+                            <input type="number" id="sacEnd" placeholder="1500" value="1500">
+                            <span class="input-unit" id="sacEndUnit">PSI</span>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Average Depth</label>
+                            <input type="number" id="sacDepth" placeholder="60" value="60">
+                            <span class="input-unit" id="sacDepthUnit">ft</span>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Dive Time</label>
+                            <input type="number" id="sacTime" placeholder="45" value="45">
+                            <span class="input-unit">min</span>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Tank Type</label>
+                            <select id="sacTankType" title="Select tank type">
+                                <option value="al80" selected>AL80 (77.4 ft³)</option>
+                                <option value="hp100">HP100 (100 ft³)</option>
+                                <option value="lp85">LP85 (85 ft³)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="calc-card result-card">
+                    <h3>Consumption Analysis</h3>
+                    <div id="sacVisualContainer" class="visual-container">
+                        <!-- SAC Visuals populated by JS -->
+                    </div>
+                    <div class="result-display">
+                        <div class="sac-result-item">
+                            <span class="result-label">SAC (pressure)</span>
+                            <span class="result-value" id="sacPressure">17</span>
+                            <span class="result-unit">psi/min</span>
+                        </div>
+                        <div class="sac-result-item highlight">
+                            <span class="result-label">RMV (volume)</span>
+                            <span class="result-value" id="sacRmv">0.49</span>
+                            <span class="result-unit">ft³/min</span>
+                        </div>
+                    </div>
+                    <div class="sac-interpretation" id="sacInterpretation">
+                        <!-- Interpretation populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nitrox Calculator Section -->
+        <section id="nitrox" class="calculator-section">
+            <div class="section-header">
+                <h1><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="v-bottom">
+                        <path d="M12 2a7 7 0 0 1 7 7v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9a7 7 0 0 1 7-7z" />
+                        <path d="M9 12h6" />
+                        <path d="M12 9v6" />
+                    </svg> Nitrox Calculator</h1>
+                <p class="section-desc">Calculate Maximum Operating Depth (MOD) and Best Mix</p>
+            </div>
+            <div class="calc-grid">
+                <div class="calc-card">
+                    <h3>Oxygen Percentage</h3>
+                    <div class="o2-slider-container">
+                        <input type="range" id="o2Slider" min="21" max="40" value="32" class="o2-slider"
+                            title="Adjust Oxygen percentage">
+                        <div class="o2-display">
+                            <span class="o2-value" id="o2Value">32</span>
+                            <span class="o2-unit">% O₂</span>
+                        </div>
+                    </div>
+                    <div class="mix-presets">
+                        <button class="preset-btn" data-o2="21">Air (21%)</button>
+                        <button class="preset-btn active" data-o2="32">EAN32</button>
+                        <button class="preset-btn" data-o2="36">EAN36</button>
+                    </div>
+                </div>
+                <div class="calc-card">
+                    <h3>PO2 Limit</h3>
+                    <div class="po2-selector">
+                        <button class="po2-btn" data-po2="1.2">1.2 (Conservative)</button>
+                        <button class="po2-btn active" data-po2="1.4">1.4 (Standard)</button>
+                        <button class="po2-btn" data-po2="1.6">1.6 (Deco only)</button>
+                    </div>
+                </div>
+                <div class="calc-card result-card">
+                    <h3>Maximum Operating Depth</h3>
+                    <div id="nitroxVisualContainer" class="visual-container">
+                        <!-- Gauge visual populated by JS -->
+                    </div>
+                    <div class="mod-result">
+                        <span class="result-value large" id="modValue">111</span>
+                        <span class="result-unit" id="modUnit">ft</span>
+                    </div>
+                    <div class="mod-warning" id="modWarning"></div>
+                </div>
+
+                <div class="calc-card">
+                    <h3>Best Mix for Depth</h3>
+                    <div class="input-stack">
+                        <div class="input-wrapper">
+                            <label>Planned Depth</label>
+                            <input type="number" id="bestMixDepth" placeholder="100" value="100">
+                            <span class="input-unit" id="bestMixDepthUnit">ft</span>
+                        </div>
+                        <div class="result-display">
+                            <span class="result-label">Best Mix</span>
+                            <span class="result-value" id="bestMixResult">EAN35</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calc-card">
+                    <h3>Equivalent Air Depth</h3>
+                    <div class="input-stack">
+                        <div class="input-wrapper">
+                            <label>Actual Depth</label>
+                            <input type="number" id="eadDepth" placeholder="100" value="100">
+                            <span class="input-unit" id="eadDepthUnit">ft</span>
+                        </div>
+                        <div class="result-display">
+                            <span class="result-label">EAD</span>
+                            <span class="result-value" id="eadResult">79</span>
+                            <span class="result-unit" id="eadResultUnit">ft</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PO2 Table Section -->
+        <section id="po2" class="calculator-section">
+            <div class="section-header">
+                <h1>📈 PO2 / Depth Table</h1>
+                <p class="section-desc">Partial pressure of oxygen at depth</p>
+            </div>
+            <div class="calc-grid">
+                <div class="calc-card full-width">
+                    <h3>PO2 by Depth and Mix</h3>
+                    <div class="po2-table-container">
+                        <table class="po2-table" id="po2Table">
+                            <!-- Table populated by JS -->
+                        </table>
+                    </div>
+                    <div class="po2-legend">
+                        <span class="legend-item safe">🟢 Safe (&lt;1.2)</span>
+                        <span class="legend-item caution">🟡 Caution (1.2-1.4)</span>
+                        <span class="legend-item danger">🔴 Danger (&gt;1.4)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Tips Section -->
+        <section id="tips" class="calculator-section">
+            <div class="section-header">
+                <h1>💡 Quick Mental Math Tips</h1>
+                <p class="section-desc">Shortcuts for faster calculations underwater</p>
+            </div>
+            <div class="calc-grid">
+                <div class="calc-card tip-card full-width">
+                    <h3>🎯 Why Bar is Easier Than PSI</h3>
+                    <div class="tip-content">
+                        <p class="tip-highlight">In metric: <strong>10 meters = 1 bar of pressure = 1 ATA
+                                increase</strong></p>
+                        <p>This makes mental math much simpler!</p>
+                    </div>
+                </div>
+                <div class="calc-card tip-card">
+                    <h3>📊 ATA Quick Reference</h3>
+                    <div class="tip-visual">
+                        <div class="visual-row header">
+                            <span>Depth</span>
+                            <span>ATA</span>
+                            <span>Gas ×</span>
+                        </div>
+                        <div class="visual-row"><span>Surface</span><span>1</span><span>1×</span></div>
+                        <div class="visual-row"><span>10m / 33ft</span><span>2</span><span>2×</span></div>
+                        <div class="visual-row"><span>20m / 66ft</span><span>3</span><span>3×</span></div>
+                        <div class="visual-row"><span>30m / 99ft</span><span>4</span><span>4×</span></div>
+                        <div class="visual-row"><span>40m / 132ft</span><span>5</span><span>5×</span></div>
+                    </div>
+                </div>
+                <div class="calc-card tip-card">
+                    <h3>⚡ Rule of Thirds - Fast</h3>
+                    <div class="tip-visual">
+                        <div class="visual-row header metric"><span>Bar</span><span>÷3</span><span>Turn</span></div>
+                        <div class="visual-row"><span>200 bar</span><span>≈67</span><span>133 bar</span></div>
+                        <div class="visual-row"><span>210 bar</span><span>70</span><span>140 bar</span></div>
+                        <div class="visual-row"><span>232 bar</span><span>≈77</span><span>154 bar</span></div>
+                        <div class="visual-row header imperial"><span>PSI</span><span>÷3</span><span>Turn</span></div>
+                        <div class="visual-row"><span>3000</span><span>1000</span><span>2000</span></div>
+                        <div class="visual-row"><span>3500</span><span>≈1167</span><span>2333</span></div>
+                    </div>
+                </div>
+                <div class="calc-card tip-card">
+                    <h3>🔢 SAC Rate Shortcut (Bar)</h3>
+                    <div class="tip-content">
+                        <p><strong>Metric tanks are rated in Liters</strong></p>
+                        <p class="formula">Gas used = Bar used × Tank L</p>
+                        <div class="example-box">
+                            <span class="example-label">Example:</span>
+                            <span>50 bar used × 12L tank = 600L gas</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calc-card tip-card">
+                    <h3>🧮 MOD Quick Calc (Bar)</h3>
+                    <div class="tip-content">
+                        <p class="formula">MOD = (PO2 ÷ O2%) × 10 - 10</p>
+                        <div class="example-box">
+                            <span class="example-label">EAN32 @ 1.4 PO2:</span>
+                            <span>(1.4 ÷ 0.32) × 10 - 10 = <strong>33.75m</strong></span>
+                        </div>
+                        <div class="example-box">
+                            <span class="example-label">Quick:</span>
+                            <span>32% → ~34m MOD</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calc-card tip-card">
+                    <h3>⏱️ Gas Time @ Depth</h3>
+                    <div class="tip-content">
+                        <p class="formula">Time = AvailableGas ÷ (SAC × ATA)</p>
+                        <div class="example-box">
+                            <span class="example-label">At 20m (3 ATA):</span>
+                            <span>1000L ÷ (20 L/min × 3) = <strong>16.6 min</strong></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calc-card tip-card full-width">
+                    <h3>📐 Memory Tricks</h3>
+                    <div class="memory-grid">
+                        <div class="memory-item">
+                            <span class="memory-icon">🎯</span>
+                            <span class="memory-text"><strong>EAN32:</strong> MOD ~34m (1.4 PO2)</span>
+                        </div>
+                        <div class="memory-item">
+                            <span class="memory-icon">🎯</span>
+                            <span class="memory-text"><strong>EAN36:</strong> MOD ~29m (1.4 PO2)</span>
+                        </div>
+                        <div class="memory-item">
+                            <span class="memory-icon">💨</span>
+                            <span class="memory-text"><strong>Average SAC:</strong> 15-20 L/min surface</span>
+                        </div>
+                        <div class="memory-item">
+                            <span class="memory-icon">🏊</span>
+                            <span class="memory-text"><strong>Swim speed:</strong> ~15m/min normal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Equipment Checklist Section -->
+        <section id="checklist" class="calculator-section">
+            <div class="section-header">
+                <h1>✅ Pre-Dive Checklist</h1>
+                <p class="section-desc">Interactive equipment and buddy checks</p>
+                <button class="reset-btn" id="resetChecklist">🔄 Reset All</button>
+            </div>
+            <div class="checklist-grid" id="checklistContainer">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="scripts/units.js"></script>
+    <script src="scripts/tanks.js?v=2"></script>
+    <script src="scripts/weights.js"></script>
+    <script src="scripts/gasplan.js"></script>
+    <script src="scripts/penetration.js"></script>
+    <script src="scripts/sac.js"></script>
+    <script src="scripts/nitrox.js"></script>
+    <script src="scripts/po2table.js"></script>
+    <script src="scripts/checklist.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+
+</html>
